@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 
 interface SmallPreviewProps {
   htmlContent: string;
@@ -7,17 +7,6 @@ interface SmallPreviewProps {
 }
 
 export function SmallPreview({ htmlContent, showHtmlPreview, scrollTop = 0 }: SmallPreviewProps) {
-  const smallPreviewRef = useRef<HTMLDivElement>(null);
-
-  // 메인 스크롤과 연동하여 작은 미리보기도 스크롤
-  useEffect(() => {
-    if (smallPreviewRef.current && showHtmlPreview) {
-      // 메인 스크롤 위치에 비례하여 작은 미리보기도 스크롤
-      const smallPreviewScrollTop = scrollTop * 0.12; // 스케일 비율에 맞춰 스크롤
-      smallPreviewRef.current.scrollTop = smallPreviewScrollTop;
-    }
-  }, [scrollTop, showHtmlPreview]);
-
   if (!showHtmlPreview || !htmlContent) {
     // HTML 미리보기가 없을 때는 기본 안내 메시지 표시
     return (
@@ -67,24 +56,17 @@ export function SmallPreview({ htmlContent, showHtmlPreview, scrollTop = 0 }: Sm
     );
   }
 
-  // HTML 미리보기가 있을 때는 축소된 HTML을 스크롤 가능하게 보여줌
+  // HTML 미리보기가 있을 때는 축소된 HTML을 고정 위치로 보여줌
   return (
     <div className="absolute bg-white h-screen left-[154px] overflow-hidden shadow-[0px_1.411px_1.411px_0px_rgba(0,0,0,0.25)] top-[78px] w-[187px]">
-      {/* 축소된 HTML 미리보기 - 스크롤 가능 */}
-      <div 
-        ref={smallPreviewRef}
-        className="w-full h-full overflow-y-auto overflow-x-hidden"
-        style={{ 
-          scrollbarWidth: 'none', // Firefox
-          msOverflowStyle: 'none' // IE/Edge
-        }}
-      >
+      {/* 축소된 HTML 미리보기 - 고정 위치 (스크롤 없음) */}
+      <div className="w-full h-full overflow-hidden">
         <div 
           className="origin-top-left"
           style={{ 
-            transform: 'scale(0.12)', // 12% 스케일로 충분한 여유
-            width: '1558px',  // 187px / 0.12 = 1558px
-            height: '8333px'  // 100vh / 0.12 = 8333px (충분한 높이)
+            transform: `scale(0.15) translateY(${-(scrollTop * 0.6)}px)`, // 0.6 속도로 왼쪽 스크롤 동기화
+            width: '1247px',  // 187px / 0.15 = 1247px (정확한 계산)
+            height: '15000px' // 100vh / 0.15 = 6667px → 15000px로 증가하여 흰색 배경 방지
           }}
         >
           <iframe
@@ -92,29 +74,32 @@ export function SmallPreview({ htmlContent, showHtmlPreview, scrollTop = 0 }: Sm
             className="w-full h-full border-0"
             title="Small HTML Preview"
             sandbox="allow-scripts allow-same-origin"
+            style={{
+              backgroundColor: 'transparent' // iframe 배경을 투명하게 설정
+            }}
           />
         </div>
       </div>
       
-      {/* 파란색 박스 - 가운데 미리보기의 현재 위치를 정확하게 표시 */}
+      {/* 파란색 박스 - 가운데 미리보기가 보여주는 위치를 왼쪽 작은 미리보기에서 정확하게 표시 */}
+      {/* 
+        수학적 계산 (정확한 위치 매칭):
+        - 가운데 스크롤: scrollTop * 1.0 (100%)
+        - 왼쪽 스크롤: translateY(-(scrollTop * 0.6)) (60% 속도)
+        - 파란색 박스 위치: 가운데의 현재 위치를 왼쪽에서 찾는 정확한 계산
+        - 공식: (scrollTop * 0.6) - (scrollTop * 0.6) = 0 (왼쪽 스크롤과 상대적 위치)
+      */}
       <div 
         className="absolute border-2 border-blue-500 pointer-events-none"
         style={{
           left: '0px',
-          top: `${(scrollTop * 0.12)}px`, // 스케일 비율에 맞춰 정확한 위치 계산
+          top: `${scrollTop * 0.06}px`, // 스케일 0.15에 맞춰 정확한 위치 계산
           width: '187px',
-          height: `${(window.innerHeight * 0.12)}px`, // 화면 높이의 12%로 정확한 비율
+          height: `${window.innerHeight * 0.15}px`, // 화면 높이의 15%로 정확한 비율
           zIndex: 10,
           backgroundColor: 'transparent'
         }}
       />
-      
-      {/* 스크롤바 숨기기 (Webkit 브라우저) */}
-      <style jsx>{`
-        div::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
     </div>
   );
 }
