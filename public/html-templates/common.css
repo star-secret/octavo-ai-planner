@@ -1,0 +1,1283 @@
+/* CSS Variables for Colors */
+:root {
+    --color-primary: #191919;
+    --color-secondary: #fe443b;
+    --color-background: #ffffff;
+    --color-highlight: rgba(253, 69, 57, 0.15);
+    --color-line: #191919;
+    --color-main-bg: #feeba7;
+    --color-accent: #e59300;
+    --color-spacer: #984848;
+}
+
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Force font size */
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Pretendard', 'Arial', sans-serif;
+    font-size: 16px;
+    background-color: var(--color-background);
+    color: var(--color-primary);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* Normal text color for reuse */
+.normal-text {
+    color: var(--color-primary);
+}
+
+/* Frame Container */
+.frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 1200px;
+    background-color: var(--color-background);
+    padding: 0 55px;
+    box-sizing: border-box;
+    position: relative;
+    margin: 0 auto;
+}
+
+/* Spacer Elements */
+.spacer {
+    width: 100%;
+    background-color: transparent;
+    flex-shrink: 0;
+}
+
+.spacer-rectangle {
+    width: 750px;
+    margin-left: 55px;
+    background-color: transparent;
+    flex-shrink: 0;
+}
+
+/* Spacer heights */
+.spacer-10 { height: 10px; }
+.spacer-30 { height: 30px; }
+.spacer-35 { height: 35px; }
+.spacer-43 { height: 43px; }
+.spacer-60 { height: 60px; }
+.spacer-90 { height: 90px; }
+.spacer-93 { height: 93px; }
+.spacer-100 { height: 100px; }
+.spacer-110 { height: 110px; }
+.spacer-130 { height: 130px; }
+.spacer-170 { height: 170px; }
+.spacer-200 { height: 200px; }
+.spacer-270 { height: 270px; }
+
+/* Text Containers */
+.text-container {
+    width: 100%;
+    text-align: center;
+    flex-shrink: 0;
+    line-height: 1.2;
+}
+
+.text-container p {
+    margin: 0;
+    padding: 0;
+}
+
+/* =================================== */
+/* Legacy Text Styles (Deprecated - Use Typography System) */
+/* =================================== */
+
+/* Text Sections - DEPRECATED: Use h3-90 instead */
+/*
+.text-section {
+    font-family: 'Pretendard', 'Arial', sans-serif;
+    line-height: 110px;
+    min-width: 100%;
+    font-style: normal;
+    position: relative;
+    flex-shrink: 0;
+    color: var(--color-primary);
+    font-size: 90px;
+    font-weight: 400;
+    text-align: center;
+    letter-spacing: -2.7px;
+    width: min-content;
+    margin: 0;
+    padding: 0;
+}
+
+.text-line {
+    display: block;
+    line-height: 110px;
+    margin: 0;
+    padding: 0;
+}
+*/
+
+/* Main Title - DEPRECATED: Use h1-80 instead */
+/*
+.main-title {
+    flex-shrink: 0;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    font-size: 80px;
+    line-height: 105px;
+    color: var(--color-primary);
+    text-align: left;
+    letter-spacing: -2.4px;
+    width: 100%;
+}
+
+.main-title p {
+    display: block;
+    margin-bottom: 0;
+}
+*/
+
+/* Sub Text - DEPRECATED: Use h3-45 instead */
+/*
+.sub-text {
+    flex-shrink: 0;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 400;
+    font-size: 45px;
+    line-height: 67px;
+    color: var(--color-primary);
+    text-align: left;
+    letter-spacing: -1.35px;
+    width: 100%;
+}
+
+.sub-text p {
+    display: block;
+}
+*/
+
+/* Line */
+.line {
+    height: 151.5px;
+    position: relative;
+    flex-shrink: 0;
+    width: 0;
+    margin: 0;
+}
+
+.line-inner {
+    position: absolute;
+    bottom: 0;
+    left: -1.25px;
+    top: 0;
+    background-color: var(--color-line);
+    width: 2.5px;
+}
+
+/* Line with different styling */
+.line-alt {
+    flex-shrink: 0;
+    width: 0;
+    height: 158.5px;
+    position: relative;
+}
+
+.line-inner-alt {
+    position: absolute;
+    bottom: 0;
+    left: -1.5px;
+    right: -1.5px;
+    top: 0;
+    background-color: var(--color-primary);
+}
+
+/* Highlight Container */
+.highlight-container {
+    position: relative;
+    display: block;
+    flex-shrink: 0;
+    max-width: 750px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+/* Highlight Background */
+.highlight-bg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 45px;
+    background-color: var(--color-highlight);
+    z-index: 0;
+}
+
+.highlight-bg-bottom {
+    position: absolute;
+    bottom: -45px;
+    left: 0;
+    right: 0;
+    height: 45px;
+    background-color: var(--color-highlight);
+    z-index: 0;
+}
+
+/* Highlight Text - Ensure it appears above background */
+.highlight-container span,
+.highlight-container div {
+    z-index: 1;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+/* Text Content - DEPRECATED: Use h1-145 instead */
+/*
+.text-content {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    font-size: 145px;
+    line-height: 175px;
+    color: var(--color-secondary);
+    text-align: center;
+    letter-spacing: -4.35px;
+    white-space: pre;
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+*/
+
+/* Wow Text */
+.wow-text {
+    flex-shrink: 0;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    font-size: 250px;
+    line-height: normal;
+    color: var(--color-primary);
+    text-align: center;
+    letter-spacing: -7.5px;
+    width: 750px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+.wow-text p {
+    display: block;
+    line-height: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+/* Line Text with Highlight */
+.line-text {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    max-width: 750px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+.line-text-reverse {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    flex-shrink: 0;
+    padding-bottom: 45px;
+    position: relative;
+}
+
+.line-text-alt {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    flex-shrink: 0;
+    padding-bottom: 45px;
+}
+
+/* =================================== */
+/* Image Container System */
+/* =================================== */
+
+/* Base Image Container */
+.image-container {
+    flex-shrink: 0;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* Image Container - Square (860x860) */
+.image-container-square {
+    width: 860px;
+    height: 860px;
+}
+
+/* Image Container - Rectangle (750x443) */
+.image-container-rectangle {
+    width: 750px;
+    height: 443px;
+}
+
+/* Image Container - Large (860x796) */
+.image-container-large {
+    width: 860px;
+    height: 796px;
+}
+
+/* Image Container - Medium (860x612) - Legacy support */
+.image-container-medium {
+    width: 860px;
+    height: 612px;
+}
+
+/* Main Image (for img tags inside containers) */
+.main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Keyword Components */
+.keyword {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+    margin: 0;
+}
+
+.keyword-group {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+    margin: 0;
+}
+
+.keyword-group + .keyword-group {
+    margin-left: 20px;
+}
+
+.dot-letter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+    margin: 0;
+}
+
+.dots {
+    position: relative;
+    flex-shrink: 0;
+    width: 15px;
+    height: 15px;
+    background-color: var(--color-accent);
+    border-radius: 50%;
+    margin: 10px;
+}
+
+/* Dots with secondary color */
+.dots-secondary {
+    position: relative;
+    flex-shrink: 0;
+    width: 15px;
+    height: 15px;
+    background-color: var(--color-secondary);
+    border-radius: 50%;
+    margin: 10px;
+}
+
+.letter-text {
+    font-family: 'Cafe24 Ssurround OTF', Bold, sans-serif;
+    font-size: 120px;
+    font-weight: bold;
+    line-height: 1;
+    font-style: normal;
+    position: relative;
+    flex-shrink: 0;
+    color: var(--color-secondary);
+    text-align: center;
+    white-space: nowrap;
+    letter-spacing: -3.6px;
+    margin: 0;
+}
+
+.letter-text p {
+    display: block;
+    line-height: 148px;
+    white-space: pre;
+}
+
+/* Letter text with Pretendard font */
+.letter-text-pretendard {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    font-size: 80px;
+    line-height: 100px;
+    font-style: normal;
+    position: relative;
+    flex-shrink: 0;
+    color: var(--color-primary);
+    text-align: center;
+    white-space: nowrap;
+    letter-spacing: -2.4px;
+    margin: 0;
+}
+
+.letter-text-pretendard p {
+    display: block;
+    line-height: 100px;
+    white-space: pre;
+}
+
+/* Text Styles - DEPRECATED: Use Typography System instead */
+/*
+.text-main {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    font-size: 80px;
+    line-height: 100px;
+    color: var(--color-primary);
+    letter-spacing: -2.4px;
+    white-space: nowrap;
+}
+
+.text-highlight {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    font-size: 105px;
+    line-height: 132px;
+    color: var(--color-secondary);
+    letter-spacing: -3.15px;
+    white-space: nowrap;
+    margin-bottom: -45px;
+    order: 2;
+}
+
+.text-sub {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    font-size: 60px;
+    line-height: 87px;
+    color: var(--color-primary);
+    letter-spacing: -1.8px;
+    white-space: nowrap;
+}
+*/
+
+/* Dynamic Keyword Styles */
+.keyword-dynamic {
+    display: inline-block;
+    position: relative;
+}
+
+.letter {
+    position: relative;
+    display: inline-block;
+}
+
+.dots-dynamic {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background-color: var(--color-secondary);
+    border-radius: 50%;
+}
+
+/* All elements should maintain fixed size */
+.frame > * {
+    flex-shrink: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .frame {
+        padding: 0 20px;
+    }
+    
+    .text-main {
+        font-size: 40px;
+        line-height: 50px;
+    }
+    
+    .text-highlight {
+        font-size: 52px;
+        line-height: 66px;
+    }
+    
+    .text-sub {
+        font-size: 30px;
+        line-height: 43px;
+    }
+    
+    .image-container-alt {
+        width: 100%;
+        height: 300px;
+    }
+}
+
+/* Start Thumbnail 2 Specific Styles */
+.start-thumbnail-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 750px;
+    background-color: var(--color-background);
+    box-sizing: border-box;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.start-thumbnail-2 > * {
+    flex-shrink: 0;
+}
+
+/* Text Content Container */
+.text-content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 733px;
+    box-sizing: border-box;
+    position: relative;
+    flex-shrink: 0;
+}
+
+/* Main Title Text */
+.main-title-text {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    font-size: 90px;
+    line-height: 110px;
+    color: var(--color-primary);
+    text-align: center;
+    letter-spacing: -2.7px;
+    white-space: nowrap;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.main-title-text p {
+    display: block;
+    line-height: 110px;
+    white-space: pre;
+    margin: 0;
+    padding: 0;
+}
+
+/* Subtitle Container */
+.subtitle-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-sizing: border-box;
+    padding: 10px;
+    position: relative;
+    flex-shrink: 0;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    font-size: 90px;
+    line-height: 110px;
+    color: var(--color-primary);
+    text-align: center;
+    letter-spacing: -2.7px;
+    white-space: nowrap;
+}
+
+.subtitle-container p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Highlighted Text */
+.highlighted-text {
+    color: var(--color-accent);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.highlighted-text p {
+    line-height: 110px;
+    white-space: pre;
+    margin: 0;
+    padding: 0;
+}
+
+/* Description Text */
+.description-text {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    font-size: 80px;
+    line-height: 105px;
+    color: var(--color-primary);
+    text-align: center;
+    letter-spacing: -2.4px;
+    position: relative;
+    flex-shrink: 0;
+    min-width: 100%;
+}
+
+.description-text p {
+    display: block;
+    line-height: 105px;
+    margin: 0;
+    padding: 0;
+}
+
+/* Image Container */
+.thumbnail-image-container {
+    width: 100%;
+    height: 612px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.thumbnail-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 860px;
+    height: 612px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Bottom Content Container */
+.bottom-content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 739px;
+    box-sizing: border-box;
+    position: relative;
+    flex-shrink: 0;
+}
+
+/* Info Text */
+.info-text {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    font-size: 80px;
+    line-height: 105px;
+    color: var(--color-primary);
+    text-align: center;
+    letter-spacing: -2.4px;
+    position: relative;
+    flex-shrink: 0;
+    min-width: 100%;
+}
+
+.info-text p {
+    font-size: 80px;
+    margin: 0;
+    padding: 0;
+}
+
+.info-text .bold-text {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    font-size: 80px;
+    line-height: 100px;
+    letter-spacing: -2.4px;
+}
+
+.info-text .normal-text {
+    line-height: 105px;
+}
+
+/* Button Container */
+.button-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 10px;
+    box-sizing: border-box;
+    position: relative;
+    flex-shrink: 0;
+}
+
+/* Highlight Button */
+.highlight-button {
+    background-color: var(--color-accent);
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: 10px;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.highlight-button-text {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    font-size: 90px;
+    line-height: 110px;
+    color: #ffffff;
+    text-align: center;
+    letter-spacing: -2.7px;
+    white-space: nowrap;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.highlight-button-text p {
+    display: block;
+    line-height: 110px;
+    white-space: pre;
+    margin: 0;
+    padding: 0;
+}
+
+/* Final Text */
+.final-text {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    font-size: 90px;
+    line-height: 110px;
+    color: var(--color-primary);
+    text-align: center;
+    letter-spacing: -2.7px;
+    white-space: nowrap;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.final-text p {
+    display: block;
+    line-height: 110px;
+    white-space: pre;
+    margin: 0;
+    padding: 0;
+}
+
+/* Text Styles - General - DEPRECATED: Use Typography System instead */
+/*
+.text-title-large {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    line-height: 105px;
+    min-width: 100%;
+    font-style: normal;
+    position: relative;
+    flex-shrink: 0;
+    color: var(--color-primary);
+    font-size: 80px;
+    text-align: center;
+    letter-spacing: -2.4px;
+    width: min-content;
+    margin: 0;
+    padding: 0;
+}
+
+.text-title-large p {
+    display: block;
+    line-height: 105px;
+    margin: 0;
+    padding: 0;
+}
+
+.text-subtitle {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    line-height: 87px;
+    min-width: 100%;
+    font-style: normal;
+    position: relative;
+    flex-shrink: 0;
+    color: var(--color-primary);
+    font-size: 60px;
+    text-align: center;
+    letter-spacing: -1.8px;
+    width: min-content;
+    margin: 0;
+    padding: 0;
+}
+
+.text-subtitle p {
+    display: block;
+    margin-bottom: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.text-description {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 400;
+    line-height: 63px;
+    min-width: 100%;
+    font-style: normal;
+    position: relative;
+    flex-shrink: 0;
+    color: var(--color-primary);
+    font-size: 40px;
+    text-align: center;
+    letter-spacing: -1.2px;
+    width: min-content;
+    margin: 0;
+    padding: 0;
+}
+
+.text-description p {
+    display: block;
+    margin-bottom: 0;
+    margin: 0;
+    padding: 0;
+}
+*/
+
+/* Highlight Box - General (replaces main-copy) */
+.highlight-box {
+    background-color: var(--color-main-bg);
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 0px 10px;
+    position: relative;
+    flex-shrink: 0;
+    margin: 0;
+}
+
+.highlight-box-large {
+    background-color: var(--color-main-bg);
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+    margin: 0;
+}
+
+.highlight-text {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    line-height: 0;
+    font-style: normal;
+    position: relative;
+    flex-shrink: 0;
+    color: var(--color-primary);
+    font-size: 53px;
+    text-align: center;
+    text-nowrap: nowrap;
+    letter-spacing: -1.59px;
+}
+
+.highlight-text p {
+    display: block;
+    line-height: 73px;
+    white-space: pre;
+    margin: 0;
+    padding: 0;
+}
+
+.highlight-text-large {
+    font-family: 'Pretendard', 'Pretendard Bold', 'Arial Black', 'Helvetica Bold', sans-serif;
+    line-height: 175px;
+    font-style: normal;
+    position: relative;
+    flex-shrink: 0;
+    color: var(--color-primary);
+    font-size: 145px !important;
+    font-weight: 700 !important;
+    text-align: center;
+    white-space: nowrap;
+    letter-spacing: -4.35px;
+    margin: 0;
+    padding: 0;
+    min-height: 175px;
+}
+
+.highlight-text-large p {
+    display: block;
+    line-height: 175px;
+    white-space: pre;
+}
+
+/* Wow Text Container */
+.wow-text-container {
+    display: flex;
+    height: 321.832px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-shrink: 0;
+    width: 324.223px;
+}
+
+.wow-text-skew {
+    flex: none;
+    transform: skewX(351.109deg);
+}
+
+.wow-text-content {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 800;
+    line-height: 0;
+    font-style: normal;
+    position: relative;
+    color: var(--color-primary);
+    font-size: 250px;
+    text-align: center;
+    text-nowrap: nowrap;
+    letter-spacing: -7.5px;
+}
+
+.wow-text-content p {
+    display: block;
+    line-height: 325.839px;
+    white-space: pre;
+    margin: 0;
+    padding: 0;
+}
+
+/* SVG Container */
+.svg-container-small {
+    height: 18px;
+    position: relative;
+    flex-shrink: 0;
+    width: 310px;
+}
+
+.svg-container-small img {
+    display: block;
+    max-width: none;
+    width: 100%;
+    height: 100%;
+}
+
+.line-container-vertical {
+    height: 125px;
+    position: relative;
+    flex-shrink: 0;
+    width: 15px;
+}
+
+.line-container-vertical img {
+    display: block;
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    loading: lazy;
+}
+
+/* Three dots container */
+.three-dots-container {
+    height: 125px;
+    position: relative;
+    flex-shrink: 0;
+    width: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.three-dots-container .dot {
+    width: 15px;
+    height: 15px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* =================================== */
+/* Typography System */
+/* =================================== */
+
+/* H1 - Headlines (font-weight: 700) */
+.h1-145 {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 145px;
+  line-height: 175px;
+  letter-spacing: -0.03em;
+  text-align: center;
+  width: 750px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.h1-130 {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 130px;
+  line-height: 160px;
+  letter-spacing: -0.03em;
+  text-align: center;
+  width: 750px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.h1-120 {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 120px;
+  line-height: 148px;
+  letter-spacing: -0.03em;
+  text-align: center;
+  width: 750px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.h1-105 {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 105px;
+  line-height: 132px;
+  letter-spacing: -0.03em;
+  text-align: center;
+  width: 750px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.h1-90 {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 90px;
+  line-height: 110px;
+  letter-spacing: -0.03em;
+  text-align: center;
+  width: 750px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.h1-80 {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 80px;
+  line-height: 100px;
+  letter-spacing: -0.03em;
+  text-align: center;
+  width: 750px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+/* H2 - Subheadlines (font-weight: 700) */
+.h2-60 {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 87px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  width: 750px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.h2-53 {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 53px;
+  line-height: 73px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  width: 750px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+/* H3 - Body Text (font-weight: 400) */
+.h3-45 {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 400;
+  font-size: 45px;
+  line-height: 67px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  width: 750px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.h3-40 {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 63px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  width: 750px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.h3-36 {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 53px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  width: 750px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.h3-32 {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 47px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  width: 750px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+/* H3 - Body Text with custom weight (font-weight: 500) */
+.h3-53-medium {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 500;
+  font-size: 53px;
+  line-height: 73px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  width: 750px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+/* H3 - Body Text with custom weight (font-weight: 400) */
+.h3-90 {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 400;
+  font-size: 90px;
+  line-height: 110px;
+  letter-spacing: -0.03em;
+  text-align: center;
+  width: 750px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+/* H4 - Body Text (font-weight: 400) */
+.h4-28 {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 40px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  width: 750px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.h4-24 {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 33px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  width: 750px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.h4-21 {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 30px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  width: 750px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.h4-18 {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  width: 750px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combined Concepts - 복숭아 랜딩 페이지</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/html-templates/common.css">
+    <link rel="stylesheet" href="/html-templates/editor.css">
+    <style>
+        /* 세로 레이아웃을 위한 최소한의 스타일만 */
+        .concept-wrapper {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .concept-section {
+            margin-bottom: 40px;
+        }
+        
+        /* 기존 frame 스타일 유지하면서 세로 배치 */
+        .frame {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 !important;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* 이미지 컨테이너 반응형 처리 */
+        .image-container {
+            max-width: 100% !important;
+            height: auto !important;
+        }
+        
+        .image-container img {
+            max-width: 100% !important;
+            height: auto !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Editor Controls -->
+    <div class="editor-controls">
+        <button id="saveButton" class="save-button">변경 내용 저장</button>
+    </div>
+    
+    <!-- Hidden file input for image uploads -->
+    <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+
+    <div class="concept-wrapper">
+        <!-- Concept 1 Section -->
+        <div class="concept-section">
+            <div class="frame" data-name="concept_1">
+                <!-- spacer-200 -->
+                <div class="spacer-rectangle spacer-200" data-name="spacer"></div>
+                
+                <!-- keyword section -->
+                <div class="keyword" data-name="keyword" data-id="keyword-1">
+                    <div class="dot-letter" data-name="dot_letter1">
+                        <div class="dots-secondary" data-name="dots"></div>
+                        <div class="letter-text" data-id="keyword-1">달</div>
+                    </div>
+                    <div class="dot-letter" data-name="dot_letter2">
+                        <div class="dots-secondary" data-name="dots"></div>
+                        <div class="letter-text" data-id="keyword-2">콤</div>
+                    </div>
+                    <div class="dot-letter" data-name="dot_letter3">
+                        <div class="dots-secondary" data-name="dots"></div>
+                        <div class="letter-text" data-id="keyword-3">아</div>
+                    </div>
+                    <div class="dot-letter" data-name="dot_letter4">
+                        <div class="dots-secondary" data-name="dots"></div>
+                        <div class="letter-text" data-id="keyword-4">삭</div>
+                    </div>
+                </div>
+                
+                <!-- spacer-30 -->
+                <div class="spacer-rectangle spacer-30" data-name="spacer"></div>
+                
+                <!-- text sections -->
+                <div class="h3-90">
+                    <p contenteditable="true" data-id="title-1">탐스럽고 맛있는</p>
+                </div>
+                <div class="h3-90">
+                    <p contenteditable="true" data-id="title-2">제철 복숭아</p>
+                </div>
+                
+                <!-- spacer-60 -->
+                <div class="spacer-rectangle spacer-60" data-name="spacer"></div>
+                
+                <!-- line -->
+                <div class="line" data-name="line">
+                    <div class="line-inner"></div>
+                </div>
+                
+                <!-- spacer-60 -->
+                <div class="spacer-rectangle spacer-60" data-name="spacer"></div>
+                
+                <!-- main copy -->
+                <div class="highlight-box-large" data-name="main_copy">
+                    <div class="h1-145" contenteditable="true" data-id="main-copy">경봉 복숭아</div>
+                </div>
+                
+                <!-- spacer-110 -->
+                <div class="spacer-rectangle spacer-110" data-name="spacer"></div>
+                
+                <!-- image -->
+                <div class="image-container image-container-large" data-name="image_1">
+                    <img src="/images/concept_1/image_1.png" alt="main image" class="main-image editable-image" data-id="image-1">
+                </div>
+            </div>
+        </div>
+
+        <!-- Concept 2 Section -->
+        <div class="concept-section">
+            <div class="frame" id="concept_2">
+                <!-- spacer-200 -->
+                <div class="spacer spacer-200"></div>
+                
+                <!-- 전국에서 가장 맛있는 -->
+                <div class="text-container h1-80">
+                    <p contenteditable="true" data-id="title-1">전국에서 가장 맛있는</p>
+                </div>
+                
+                <!-- 복숭아만을 (하이라이트 포함) -->
+                <div class="line-text">
+                    <div class="highlight-container">
+                        <div class="highlight-bg"></div>
+                        <span class="h1-105" style="color: var(--color-secondary);" contenteditable="true" data-id="highlight">복숭아만을</span>
+                    </div>
+                </div>
+                
+                <!-- spacer-30 -->
+                <div class="spacer spacer-30"></div>
+                
+                <!-- 보내드릴 것을 약속합니다! -->
+                <div class="text-container h2-60">
+                    <p contenteditable="true" data-id="subtitle">보내드릴 것을 약속합니다!</p>
+                </div>
+                
+                <!-- spacer-110 -->
+                <div class="spacer spacer-110"></div>
+                
+                <!-- 이미지 1 -->
+                <div class="image-container image-container-square">
+                    <img src="/images/concept_2/image_1.png" alt="concept 2 image 1" class="main-image editable-image" data-id="image-1">
+                </div>
+                
+                <!-- 이미지 2 -->
+                <div class="image-container image-container-square">
+                    <img src="/images/concept_2/image_2.png" alt="concept 2 image 2" class="main-image editable-image" data-id="image-2">
+                </div>
+            </div>
+        </div>
+
+        <!-- Concept 3 Section -->
+        <div class="concept-section">
+            <div class="frame" id="concept_3">
+                <div class="spacer spacer-200"></div>
+                
+                <div class="h1-80" style="text-align: left;">
+                    <p contenteditable="true" data-id="title-1">풍부한 과즙과</p>
+                    <p contenteditable="true" data-id="title-2">쫀득 아삭한 식감!</p>
+                </div>
+                
+                <div class="spacer spacer-43"></div>
+                
+                <div class="h3-45" style="text-align: left;">
+                    <p contenteditable="true" data-id="subtitle">올해 복숭아도 역시 믿고 먹는 땡큐파머스</p>
+                </div>
+                
+                <div class="spacer spacer-90"></div>
+                
+                <div class="image-container image-container-rectangle">
+                    <img src="/images/concept_3/image_1.png" alt="concept 3 image 1" class="main-image editable-image" data-id="image-1">
+                </div>
+                
+                <div class="spacer spacer-93"></div>
+                
+                <!-- line -->
+                <div class="line" data-name="line">
+                    <div class="line-inner"></div>
+                </div>
+                
+                <div class="spacer spacer-170"></div>
+                
+                <div class="wow-text">
+                    <p contenteditable="true" data-id="wow">와!</p>
+                </div>
+                
+                <div class="line-text">
+                    <div class="highlight-container">
+                        <div class="highlight-bg"></div>
+                        <span class="h1-145" contenteditable="true" data-id="highlight">진-짜 맛있다</span>
+                    </div>
+                </div>
+                
+                <div class="spacer spacer-90"></div>
+                
+                <div class="image-container image-container-rectangle">
+                    <img src="/images/concept_3/image_2.png" alt="concept 3 image 2" class="main-image editable-image" data-id="image-2">
+                </div>
+                
+                <div class="spacer spacer-270"></div>
+            </div>
+        </div>
+
+        <!-- Concept 4 Section -->
+        <div class="concept-section">
+            <div class="frame" data-name="concept_4" id="node-83_552">
+                <!-- Spacer -->
+                <div class="spacer spacer-200" data-name="Vector" id="node-83_553"></div>
+                
+                <!-- Wow Text Container -->
+                <div class="wow-text-container">
+                    <div class="wow-text-skew">
+                        <div class="wow-text-content" id="node-83_554" contenteditable="true" data-id="wow">
+                            <p>와!</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Spacer -->
+                <div class="spacer spacer-30" data-name="Vector" id="node-83_555"></div>
+                
+                <!-- Keyword section for "진짜 맛있다" -->
+                <div class="keyword" data-name="keyword" id="node-189_30" data-id="keyword-4">
+                    <!-- Group 1: "진짜" -->
+                    <div class="keyword-group">
+                        <div class="dot-letter" data-name="dot_letter1" id="node-189_31">
+                            <div class="dots-secondary" data-name="dots" id="node-189_32"></div>
+                            <div class="letter-text-pretendard" id="node-189_33" data-id="keyword-1">
+                                <p>진</p>
+                            </div>
+                        </div>
+                        <div class="dot-letter" data-name="dot_letter2" id="node-189_34">
+                            <div class="dots-secondary" data-name="dots" id="node-189_35"></div>
+                            <div class="letter-text-pretendard" id="node-189_36" data-id="keyword-2">
+                                <p>짜</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Group 2: "맛있다" -->
+                    <div class="keyword-group">
+                        <div class="dot-letter" data-name="dot_letter3" id="node-189_37">
+                            <div class="dots-secondary" data-name="dots" id="node-189_38"></div>
+                            <div class="letter-text-pretendard" id="node-189_39" data-id="keyword-3">
+                                <p>맛</p>
+                            </div>
+                        </div>
+                        <div class="dot-letter" data-name="dot_letter4" id="node-189_40">
+                            <div class="dots-secondary" data-name="dots" id="node-189_41"></div>
+                            <div class="letter-text-pretendard" id="node-189_42" data-id="keyword-4">
+                                <p>있</p>
+                            </div>
+                        </div>
+                        <div class="dot-letter" data-name="dot_letter5" id="node-189_44">
+                            <div class="dots-secondary" data-name="dots" id="node-189_45"></div>
+                            <div class="letter-text-pretendard" id="node-189_46" data-id="keyword-5">
+                                <p>다</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Spacer -->
+                <div class="spacer spacer-90" data-name="Vector" id="node-83_563"></div>
+                
+                <!-- Three Dots Container -->
+                <div class="three-dots-container" id="node-83_564">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                
+                <!-- Spacer -->
+                <div class="spacer spacer-110" data-name="Vector" id="node-83_568"></div>
+                
+                <!-- Subtitle -->
+                <div class="h2-60">
+                    <p contenteditable="true" data-id="title-1">지금 맛보지 않으면</p>
+                    <p contenteditable="true" data-id="title-2">1년을 기다려야하는 귀한 맛!</p>
+                </div>
+                
+                <!-- spacer-60 -->
+                <div class="spacer spacer-60" data-name="Vector" id="node-83_570"></div>
+                
+                <!-- Highlight Box 1 -->
+                <div class="highlight-box" id="node-83_594">
+                    <div class="h3-53-medium" id="node-83_592" contenteditable="true" data-id="highlight-1">
+                        <p>아삭하고 식감이 살아있어 시원하고</p>
+                    </div>
+                </div>
+                
+                <!-- spacer-10 -->
+                <div class="spacer spacer-10" data-name="Vector" id="node-83_598"></div>
+                
+                <!-- Highlight Box 2 -->
+                <div class="highlight-box" id="node-83_595">
+                    <div class="h3-53-medium" id="node-83_596" contenteditable="true" data-id="highlight-2">
+                        <p>달콤한 과즙이 가득한 '딱딱이 복숭아'</p>
+                    </div>
+                </div>
+                
+                <!-- spacer-60 -->
+                <div class="spacer spacer-60" data-name="Vector" id="node-83_572"></div>
+                
+                <!-- Description -->
+                <div class="h3-40" id="node-83_573">
+                    <p contenteditable="true" data-id="description-1">한입 베어 물자마자 느껴지는 </p>
+                    <p contenteditable="true" data-id="description-2">풍부한 과즙과 아삭한 식감이 매력입니다.</p>
+                </div>
+                
+                <!-- Spacer -->
+                <div class="spacer spacer-110" data-name="Vector" id="node-83_574"></div>
+                
+                <!-- Image Container 1 -->
+                <div class="image-container image-container-large" data-name="Vector" id="node-83_575">
+                    <img src="/images/concept_4/image_1.png" alt="concept 4 image 1" class="main-image editable-image" data-id="image-1">
+                </div>
+                
+                <!-- Spacer -->
+                <div class="spacer spacer-35" data-name="Vector" id="node-83_576" style="width: 860px;"></div>
+                
+                <!-- Image Container 2 -->
+                <div class="image-container image-container-large" data-name="Vector" id="node-83_577">
+                    <img src="/images/concept_4/image_2.png" alt="concept 4 image 2" class="main-image editable-image" data-id="image-2">
+                </div>
+                
+                <!-- Spacer -->
+                <div class="spacer spacer-100" data-name="Vector" id="node-83_578"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/html-templates/editor.js"></script>
+</body>
+</html>

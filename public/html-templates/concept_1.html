@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concept 1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/html-templates/common.css">
+    <link rel="stylesheet" href="/html-templates/editor.css">
+</head>
+<body>
+    <!-- Editor Controls -->
+    <div class="editor-controls">
+        <button id="saveButton" class="save-button">변경 내용 저장</button>
+    </div>
+    
+    <!-- Hidden file input for image uploads -->
+    <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+
+    <div class="frame" data-name="concept_1">
+        <!-- spacer-200 -->
+        <div class="spacer-rectangle spacer-200" data-name="spacer"></div>
+        
+        <!-- keyword section -->
+        <div class="keyword" data-name="keyword" data-id="keyword-1">
+            <div class="dot-letter" data-name="dot_letter1">
+                <div class="dots-secondary" data-name="dots"></div>
+                <div class="letter-text" data-id="keyword-1">달</div>
+            </div>
+            <div class="dot-letter" data-name="dot_letter2">
+                <div class="dots-secondary" data-name="dots"></div>
+                <div class="letter-text" data-id="keyword-2">콤</div>
+            </div>
+            <div class="dot-letter" data-name="dot_letter3">
+                <div class="dots-secondary" data-name="dots"></div>
+                <div class="letter-text" data-id="keyword-3">아</div>
+            </div>
+            <div class="dot-letter" data-name="dot_letter4">
+                <div class="dots-secondary" data-name="dots"></div>
+                <div class="letter-text" data-id="keyword-4">삭</div>
+            </div>
+        </div>
+        
+        <!-- spacer-30 -->
+        <div class="spacer-rectangle spacer-30" data-name="spacer"></div>
+        
+        <!-- text sections -->
+        <div class="h3-90">
+            <p contenteditable="true" data-id="title-1">탐스럽고 맛있는</p>
+        </div>
+        <div class="h3-90">
+            <p contenteditable="true" data-id="title-2">제철 복숭아</p>
+        </div>
+        
+        <!-- spacer-60 -->
+        <div class="spacer-rectangle spacer-60" data-name="spacer"></div>
+        
+        <!-- line -->
+        <div class="line" data-name="line">
+            <div class="line-inner"></div>
+        </div>
+        
+        <!-- spacer-60 -->
+        <div class="spacer-rectangle spacer-60" data-name="spacer"></div>
+        
+        <!-- main copy -->
+        <div class="highlight-box-large" data-name="main_copy">
+            <div class="h1-145" contenteditable="true" data-id="main-copy">경봉 복숭아</div>
+        </div>
+        
+        <!-- spacer-110 -->
+        <div class="spacer-rectangle spacer-110" data-name="spacer"></div>
+        
+        <!-- image -->
+        <div class="image-container image-container-large" data-name="image_1">
+            <img src="/images/concept_1/image_1.png" alt="main image" class="main-image editable-image" data-id="image-1">
+        </div>
+    </div>
+
+    <script src="/html-templates/editor.js"></script>
+</body>
+</html> 
