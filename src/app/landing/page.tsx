@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Sidebar, Header, InputForm, PreviewArea, SmallPreview } from '@/components/ai-planner';
+import { Sidebar, Header, InputForm2, PreviewArea, SmallPreview } from '@/components/ai-planner';
 import { htmlTemplates } from '@/data/htmlTemplates';
 
 // Figma에서 가져온 이미지 상수
@@ -229,15 +229,12 @@ export default function Page() {
       {/* 헤더 */}
       <Header />
       
-      {/* 입력 폼 */}
-      <InputForm
-        formData={formData}
-        onInputChange={handleInputChange}
-        onAddAdvantage={addAdvantage}
-        onUpdateAdvantage={updateAdvantage}
-        onRemoveAdvantage={removeAdvantage}
-        onStartPlanning={handleStartPlanning}
-      />
+      {/* 입력 폼 - 오른쪽 끝에 배치 */}
+      <div className="absolute bg-white h-screen right-0 overflow-clip top-[78px] w-[481px]">
+        <InputForm2
+          onStartPlanning={handleStartPlanning}
+        />
+      </div>
       
       {/* 미리보기 영역 - Frame 80.svg 이미지 */}
       <div className="absolute h-screen left-[391px] overflow-hidden top-[78px] w-[860px]">

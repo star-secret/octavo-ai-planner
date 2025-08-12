@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Sidebar, Header, InputForm, PreviewArea, SmallPreview } from '@/components/ai-planner';
+import { Sidebar, Header, InputForm, InputForm2, PreviewArea, SmallPreview } from '@/components/ai-planner';
 import { htmlTemplates } from '@/data/htmlTemplates';
 
 export default function Page() {
