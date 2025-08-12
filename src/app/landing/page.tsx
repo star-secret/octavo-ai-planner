@@ -246,16 +246,21 @@ export default function Page() {
       <Header />
       
       {/* 메인 컨텐츠 영역 - Grid 레이아웃 사용 */}
-      <div className="absolute top-[60px] left-[391px] right-0 bottom-0 grid grid-cols-[1fr_481px] gap-0 xl:grid-cols-[1fr_520px] 2xl:grid-cols-[1fr_560px]">
+      <div className="absolute top-[63px] left-[391px] right-0 bottom-0 grid grid-cols-[1fr_481px] gap-0 xl:grid-cols-[1fr_520px] 2xl:grid-cols-[1fr_560px]">
         {/* 미리보기 영역 */}
         <div className="relative overflow-hidden">
           {!showPreview ? (
-            // 초기 상태: Frame 80.svg 이미지
-            <div className="h-full w-full flex items-center justify-center p-4">
+            // 초기 상태: viewer.svg 이미지
+            <div className="h-full w-full">
               <img 
-                src="/images/Frame 80.svg" 
-                alt="Frame 80" 
-                className="w-full h-full object-contain max-w-[800px] max-h-[600px]"
+                src="/images/viewer.svg" 
+                alt="Viewer" 
+                className="w-full h-full object-fill"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'fill'
+                }}
               />
             </div>
           ) : (
@@ -284,15 +289,28 @@ export default function Page() {
       
       {/* 작은 미리보기 영역 */}
       {!showPreview ? (
-        // 초기 상태: Frame 80.svg 이미지
-        <div className="absolute h-[240.63px] left-[90px] overflow-hidden top-[78px] w-[187px] xl:w-[220px] 2xl:w-[250px] xl:left-[100px] 2xl:left-[110px] xl:h-[260px] 2xl:h-[280px]">
+        // 초기 상태: viewer.svg 이미지
+        <div className="absolute h-[240.63px] left-[90px] overflow-hidden top-[63px] w-[187px] xl:w-[220px] 2xl:w-[250px] xl:left-[100px] 2xl:left-[110px] xl:h-[260px] 2xl:h-[280px]">
           <div className="h-full w-full flex items-center justify-center">
             <img 
-              src="/images/Frame 80.svg" 
-              alt="Frame 80" 
+              src="/images/viewer.svg" 
+              alt="Viewer" 
               className="w-full h-full object-contain"
             />
           </div>
+          
+          {/* 파란색 박스 - 초기 상태에서도 표시 */}
+          <div 
+            className="absolute border-2 border-blue-500 pointer-events-none"
+            style={{
+              left: '0px',
+              top: '0px',
+              width: '100%',
+              height: '100%',
+              zIndex: 10,
+              backgroundColor: 'transparent'
+            }}
+          />
         </div>
       ) : (
         // AI 상세페이지 생성 후: HTML 미리보기

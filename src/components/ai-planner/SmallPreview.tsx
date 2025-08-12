@@ -8,7 +8,7 @@ interface SmallPreviewProps {
 
 export function SmallPreview({ htmlContent, showHtmlPreview, scrollTop = 0 }: SmallPreviewProps) {
   return (
-    <div className="absolute bg-white left-[154px] overflow-hidden shadow-[0px_1.411px_1.411px_0px_rgba(0,0,0,0.25)] top-[78px] bottom-0 w-[187px]">
+    <div className="absolute bg-white left-[154px] overflow-hidden shadow-[0px_1.411px_1.411px_0px_rgba(0,0,0,0.25)] top-[63px] bottom-0 w-[187px]">
       {/* HTML 미리보기 또는 SVG 미리보기 */}
       {showHtmlPreview && htmlContent ? (
         <div className="w-full h-full overflow-hidden">
