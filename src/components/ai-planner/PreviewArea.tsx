@@ -49,13 +49,18 @@ export function PreviewArea({
     <div className="h-full w-full">
       {/* HTML 미리보기 또는 SVG 미리보기 */}
       {showHtmlPreview && htmlContent ? (
-        <div className="h-full w-full">
+        <div className="h-full w-full overflow-hidden">
           <iframe
             ref={iframeRef}
             srcDoc={htmlContent}
             className="w-full h-full border-0"
             title="HTML Preview"
             sandbox="allow-scripts allow-same-origin"
+            style={{
+              width: '100%',
+              height: '100%',
+              display: 'block'
+            }}
           />
         </div>
       ) : (
@@ -73,7 +78,6 @@ export function PreviewArea({
           />
         </div>
       )}
-       <div className="absolute bottom-0 left-0 right-0 h-8"></div>
     </div>
   );
 }

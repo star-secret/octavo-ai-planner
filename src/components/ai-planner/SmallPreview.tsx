@@ -36,7 +36,7 @@ export function SmallPreview({ htmlContent, showHtmlPreview, scrollTop = 0 }: Sm
             className="absolute border-2 border-blue-500 pointer-events-none"
             style={{
               left: '0px',
-              top: `${scrollTop * 0.06}px`, // 스케일 0.15에 맞춰 정확한 위치 계산
+              top: `${scrollTop * 0.063}px`, // 스케일 0.15에 맞춰 정확한 위치 계산
               width: '187px',
               height: `${window.innerHeight * 0.15}px`, // 화면 높이의 15%로 정확한 비율
               zIndex: 10,

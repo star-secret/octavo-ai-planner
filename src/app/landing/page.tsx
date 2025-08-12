@@ -246,9 +246,9 @@ export default function Page() {
       <Header />
       
       {/* 메인 컨텐츠 영역 - Grid 레이아웃 사용 */}
-      <div className="absolute top-[63px] left-[391px] right-0 bottom-0 grid grid-cols-[1fr_481px] gap-0 xl:grid-cols-[1fr_520px] 2xl:grid-cols-[1fr_560px]">
+      <div className="absolute top-[63px] left-[450px] right-0 bottom-0 grid grid-cols-[1fr_481px] gap-0 xl:grid-cols-[1fr_520px] 2xl:grid-cols-[1fr_560px]">
         {/* 미리보기 영역 */}
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden bg-white shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] max-w-[700px] xl:max-w-[750px] 2xl:max-w-[800px]">
           {!showPreview ? (
             // 초기 상태: viewer.svg 이미지
             <div className="h-full w-full">
@@ -265,14 +265,12 @@ export default function Page() {
             </div>
           ) : (
             // AI 상세페이지 생성 후: HTML 미리보기
-            <div className="h-full w-full bg-white shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)]">
-              <PreviewArea
-                htmlContent={htmlContent}
-                showHtmlPreview={showHtmlPreview}
-                currentTemplate={currentTemplate}
-                onScrollChange={handleScrollChange}
-              />
-            </div>
+            <PreviewArea
+              htmlContent={htmlContent}
+              showHtmlPreview={showHtmlPreview}
+              currentTemplate={currentTemplate}
+              onScrollChange={handleScrollChange}
+            />
           )}
         </div>
         

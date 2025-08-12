@@ -3,8 +3,8 @@ import Image from 'next/image';
 
 // 이미지 상수들
 const imgEllipse3 = "/images/sidebar vector1.svg";
-const img151 = "/images/Frame 3.svg";
-const imgBxBell = "/images/Frame 3.svg";
+const img151 = "/images/header_logo.svg";
+const imgBxBell = "/images/header_logo.svg";
 
 export function Header() {
   return (
@@ -20,12 +20,12 @@ export function Header() {
           />
         </div>
       </div>
-      <div className="relative shrink-0 h-6 w-24">
+      <div className="relative shrink-0 h-6 w-32">
         <Image
-          alt="Frame 55"
+          alt="Header Avatar"
           className="block max-w-none size-full"
-          src="/images/Frame 55.svg"
-          width={96}
+          src="/images/header_avata.svg"
+          width={128}
           height={24}
         />
       </div>

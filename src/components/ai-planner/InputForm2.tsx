@@ -7,6 +7,7 @@ interface InputForm2Props {
     category: string;
     options: string;
     sellingPoints: string[];
+    reviewFiles?: File[];
   }) => void;
   onFormReset?: () => void;
 }
@@ -18,7 +19,9 @@ export default function InputForm2({ onStartPlanning, onFormDataChange, onFormRe
   const [sellingPoints, setSellingPoints] = useState<string[]>([]);
   const [newSellingPoint, setNewSellingPoint] = useState<string>('');
   const [productImages, setProductImages] = useState<File[]>([]);
+  const [reviewFiles, setReviewFiles] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const reviewFileInputRef = useRef<HTMLInputElement>(null);
 
 
 
@@ -62,8 +65,24 @@ export default function InputForm2({ onStartPlanning, onFormDataChange, onFormRe
     setProductImages(prev => prev.filter((_, i) => i !== index));
   };
 
+  const handleReviewFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files) {
+      const newReviewFiles = Array.from(files);
+      setReviewFiles(prev => [...prev, ...newReviewFiles]);
+    }
+  };
+
+  const removeReviewFile = (index: number) => {
+    setReviewFiles(prev => prev.filter((_, i) => i !== index));
+  };
+
   const openFileDialog = () => {
     fileInputRef.current?.click();
+  };
+
+  const openReviewFileDialog = () => {
+    reviewFileInputRef.current?.click();
   };
 
   // 폼 데이터 변경 시 부모 컴포넌트로 전달
@@ -73,10 +92,11 @@ export default function InputForm2({ onStartPlanning, onFormDataChange, onFormRe
         productName,
         category,
         options,
-        sellingPoints
+        sellingPoints,
+        reviewFiles
       });
     }
-  }, [productName, category, options, sellingPoints]);
+  }, [productName, category, options, sellingPoints, reviewFiles]);
 
   // 폼 초기화 함수
   const resetForm = useCallback(() => {
@@ -86,6 +106,7 @@ export default function InputForm2({ onStartPlanning, onFormDataChange, onFormRe
     setSellingPoints([]);
     setNewSellingPoint('');
     setProductImages([]);
+    setReviewFiles([]);
     console.log('InputForm2 내부 상태가 초기화되었습니다!');
   }, []);
 
@@ -182,19 +203,80 @@ export default function InputForm2({ onStartPlanning, onFormDataChange, onFormRe
               상품 리뷰
             </div>
           </div>
-          <div className="h-14 w-full rounded-[10px] border border-slate-300">
-            <div className="h-full flex items-center justify-center">
-              <div className="flex flex-row gap-2 items-center">
-                <div className="w-[16.501px] h-[16.501px] text-[#878787]">
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
-                  </svg>
-                </div>
-                <div className="font-['Pretendard:Medium',_sans-serif] text-[#878787] text-[14px] w-[327px]">
-                  리뷰 파일을 업로드하면, 맞춤 기획이 됩니다.
+          
+          {/* 숨겨진 리뷰 파일 입력 */}
+          <input
+            ref={reviewFileInputRef}
+            type="file"
+            multiple
+            accept=".txt,.doc,.docx,.pdf,.csv,.xlsx,.xls"
+            onChange={handleReviewFileUpload}
+            className="hidden"
+          />
+          
+          {/* 리뷰 파일 업로드 영역 */}
+          <div className="min-h-[90px] w-full rounded-[10px] border border-slate-300 p-4">
+            {reviewFiles.length === 0 ? (
+              // 리뷰 파일이 없을 때 업로드 안내
+              <div 
+                className="h-full flex items-center justify-center cursor-pointer hover:bg-gray-50 transition-colors rounded-lg pt-4 pb-4"
+                onClick={openReviewFileDialog}
+              >
+                <div className="flex flex-row gap-2.5 items-center">
+                  <div className="w-6 h-6 text-[#878787]">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                    </svg>
+                  </div>
+                  <div className="font-['Pretendard:Medium',_sans-serif] text-[#878787] text-[14px] whitespace-nowrap">
+                    리뷰 파일을 추가해 주세요
+                  </div>
                 </div>
               </div>
-            </div>
+            ) : (
+              // 리뷰 파일이 있을 때 파일 목록과 삭제 버튼
+              <div className="space-y-3">
+                <div className="space-y-2">
+                  {reviewFiles.map((file, index) => (
+                    <div key={index} className="relative group bg-gray-50 rounded-lg p-3 border border-gray-200">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3 flex-1 min-w-0">
+                          <div className="w-8 h-8 text-[#6A00B4] flex-shrink-0">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                            </svg>
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="font-['Pretendard:Medium',_sans-serif] text-[#424242] text-[14px] truncate">
+                              {file.name}
+                            </div>
+                            <div className="font-['Pretendard:Regular',_sans-serif] text-[#878787] text-[12px]">
+                              {(file.size / 1024).toFixed(1)} KB
+                            </div>
+                          </div>
+                        </div>
+                        <button
+                          onClick={() => removeReviewFile(index)}
+                          className="w-6 h-6 text-[#c3c8ce] hover:text-red-500 transition-colors flex-shrink-0 opacity-0 group-hover:opacity-100"
+                        >
+                          <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                {reviewFiles.length < 5 && (
+                  <button
+                    onClick={openReviewFileDialog}
+                    className="bg-[#f5f7fb] px-4 py-2 rounded-lg text-[#6A00B4] text-[14px] font-medium hover:bg-[#e8ecf0] transition-colors border border-[#e0d0f0]"
+                  >
+                    + 리뷰 파일 추가
+                  </button>
+                )}
+              </div>
+            )}
           </div>
         </div>
 
