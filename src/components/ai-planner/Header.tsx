@@ -2,9 +2,9 @@ import React from 'react';
 import Image from 'next/image';
 
 // 이미지 상수들
-const imgEllipse3 = "http://localhost:3845/assets/7d0f870ea30f4a3bb47fb3084e454cb16b74b15f.png";
-const img151 = "http://localhost:3845/assets/36df531db7e90b5b928377ac0e4c893177f220e8.svg";
-const imgBxBell = "http://localhost:3845/assets/a42a4e030e27c3483b129733317d05a9ad3f1be1.svg";
+const imgEllipse3 = "/images/Vector.svg";
+const img151 = "/images/Frame 3.svg";
+const imgBxBell = "/images/Frame 3.svg";
 
 export function Header() {
   return (

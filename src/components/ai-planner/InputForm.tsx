@@ -239,16 +239,6 @@ export function InputForm({
             </div>
           </div>
         </div>
-
-        {/* AI 기획 시작 버튼 */}
-        <button 
-          onClick={onStartPlanning}
-          className="bg-[#22202a] block cursor-pointer h-[59px] overflow-clip relative rounded-[5px] shrink-0 w-[422px] hover:bg-[#2d2a36] transition-colors"
-        >
-          <div className="absolute flex flex-col font-semibold justify-center leading-[0] left-[162px] not-italic text-white text-[16px] text-left text-nowrap top-[29.5px] translate-y-[-50%]">
-            <p className="block leading-[normal] whitespace-pre">AI 기획 시작 ✨</p>
-          </div>
-        </button>
       </div>
     </div>
   );
