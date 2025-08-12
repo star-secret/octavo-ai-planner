@@ -3,14 +3,12 @@ import React, { useRef, useEffect, useState } from 'react';
 interface PreviewAreaProps {
   htmlContent: string;
   showHtmlPreview: boolean;
-  currentTemplate: string;
   onScrollChange?: (scrollTop: number) => void;
 }
 
 export function PreviewArea({
   htmlContent,
   showHtmlPreview,
-  currentTemplate,
   onScrollChange
 }: PreviewAreaProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null);

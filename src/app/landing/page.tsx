@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { Sidebar, Header, InputForm2, PreviewArea, SmallPreview } from '@/components/ai-planner';
-import { htmlTemplates } from '@/data/htmlTemplates';
 
 // Figma에서 가져온 이미지 상수
 const imgGrommetIconsLinkNext = "http://localhost:3845/assets/69f2bb5b63187d5c6d01d196f05acbc2c41ab156.svg";
@@ -87,7 +86,6 @@ export default function Page() {
   // HTML 미리보기 상태
   const [htmlContent, setHtmlContent] = useState('');
   const [showHtmlPreview, setShowHtmlPreview] = useState(false);
-  const [currentTemplate, setCurrentTemplate] = useState('concept1');
   const [scrollTop, setScrollTop] = useState(0);
   const [formKey, setFormKey] = useState(0);
 
@@ -190,7 +188,6 @@ export default function Page() {
       const content = await response.text();
       setHtmlContent(content);
       setShowHtmlPreview(true);
-      setCurrentTemplate('concept');
     } catch (error) {
       console.error('concept.html 로드 실패:', error);
       // 에러 발생 시 기본 HTML 내용으로 fallback
@@ -217,23 +214,6 @@ export default function Page() {
       `;
       setHtmlContent(fallbackHtml);
       setShowHtmlPreview(true);
-      setCurrentTemplate('fallback');
-    }
-  };
-
-  // 템플릿 변경 핸들러 (사용하지 않음)
-  const changeTemplate = async (template: string) => {
-    setCurrentTemplate(template);
-    const templatePath = htmlTemplates[template as keyof typeof htmlTemplates];
-    
-    try {
-      const response = await fetch(templatePath);
-      const content = await response.text();
-      setHtmlContent(content);
-      setShowHtmlPreview(true);
-    } catch (error) {
-      console.error('템플릿 로드 실패:', error);
-      alert('템플릿 로드에 실패했습니다.');
     }
   };
 
@@ -268,7 +248,6 @@ export default function Page() {
             <PreviewArea
               htmlContent={htmlContent}
               showHtmlPreview={showHtmlPreview}
-              currentTemplate={currentTemplate}
               onScrollChange={handleScrollChange}
             />
           )}
