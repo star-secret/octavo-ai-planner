@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { Sidebar, Header, InputForm2, PreviewArea, SmallPreview } from '@/components/ai-planner';
 import { htmlTemplates } from '@/data/htmlTemplates';
 
@@ -74,8 +73,6 @@ function BeforeStart({ onClick, isActive }: { onClick: () => void; isActive: boo
 }
 
 export default function Page() {
-  const router = useRouter();
-  
   // 폼 데이터 상태
   const [formData, setFormData] = useState({
     productName: '',
@@ -84,6 +81,9 @@ export default function Page() {
     sellingPoints: [] as string[]
   });
 
+  // AI 상세페이지 생성 상태
+  const [showPreview, setShowPreview] = useState(false);
+  
   // HTML 미리보기 상태
   const [htmlContent, setHtmlContent] = useState('');
   const [showHtmlPreview, setShowHtmlPreview] = useState(false);
@@ -91,18 +91,20 @@ export default function Page() {
   const [scrollTop, setScrollTop] = useState(0);
   const [formKey, setFormKey] = useState(0);
 
-  // BeforeStart 버튼 클릭 핸들러 - 메인페이지로 이동
+  // BeforeStart 버튼 클릭 핸들러 - 미리보기 영역 표시
   const handleBeforeStartClick = () => {
     console.log('AI 상세페이지 만들기 버튼이 클릭되었습니다!');
     console.log('현재 formData:', formData);
-    // 메인페이지로 이동
-    router.push('/');
+    setShowPreview(true);
+    loadConceptHtml();
   };
 
   // 컴포넌트 마운트 시 concept.html 자동 로드
   useEffect(() => {
-    loadConceptHtml();
-  }, []);
+    if (showPreview) {
+      loadConceptHtml();
+    }
+  }, [showPreview]);
 
   // InputForm2에서 폼 데이터 변경 시 호출되는 핸들러
   const handleFormDataChange = (data: {
@@ -122,6 +124,7 @@ export default function Page() {
       options: '',
       sellingPoints: []
     });
+    setShowPreview(false);
     console.log('폼이 초기화되었습니다!');
     
     // InputForm2의 상태도 초기화하기 위해 key를 변경
@@ -246,47 +249,72 @@ export default function Page() {
       <div className="absolute top-[60px] left-[391px] right-0 bottom-0 grid grid-cols-[1fr_481px] gap-0 xl:grid-cols-[1fr_520px] 2xl:grid-cols-[1fr_560px]">
         {/* 미리보기 영역 */}
         <div className="relative overflow-hidden">
-          <div className="h-full w-full flex items-center justify-center p-4">
-            <img 
-              src="/images/Frame 80.svg" 
-              alt="Frame 80" 
-              className="w-full h-full object-contain max-w-[800px] max-h-[600px]"
-            />
-          </div>
+          {!showPreview ? (
+            // 초기 상태: Frame 80.svg 이미지
+            <div className="h-full w-full flex items-center justify-center p-4">
+              <img 
+                src="/images/Frame 80.svg" 
+                alt="Frame 80" 
+                className="w-full h-full object-contain max-w-[800px] max-h-[600px]"
+              />
+            </div>
+          ) : (
+            // AI 상세페이지 생성 후: HTML 미리보기
+            <div className="h-full w-full bg-white shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)]">
+              <PreviewArea
+                htmlContent={htmlContent}
+                showHtmlPreview={showHtmlPreview}
+                currentTemplate={currentTemplate}
+                onScrollChange={handleScrollChange}
+              />
+            </div>
+          )}
         </div>
         
         {/* 입력 폼 */}
         <div className="bg-white overflow-clip h-full">
           <InputForm2
             key={formKey}
-            onStartPlanning={handleBeforeStartClick}
+            onStartPlanning={showPreview ? handleStartPlanning : handleBeforeStartClick}
             onFormDataChange={handleFormDataChange}
             onFormReset={handleFormReset}
           />
         </div>
       </div>
       
-      {/* 작은 미리보기 영역 - Frame 80.svg 이미지 */}
-      <div className="absolute h-[240.63px] left-[90px] overflow-hidden top-[78px] w-[187px] xl:w-[220px] 2xl:w-[250px] xl:left-[100px] 2xl:left-[110px] xl:h-[260px] 2xl:h-[280px]">
-        <div className="h-full w-full flex items-center justify-center">
-          <img 
-            src="/images/Frame 80.svg" 
-            alt="Frame 80" 
-            className="w-full h-full object-contain"
+      {/* 작은 미리보기 영역 */}
+      {!showPreview ? (
+        // 초기 상태: Frame 80.svg 이미지
+        <div className="absolute h-[240.63px] left-[90px] overflow-hidden top-[78px] w-[187px] xl:w-[220px] 2xl:w-[250px] xl:left-[100px] 2xl:left-[110px] xl:h-[260px] 2xl:h-[280px]">
+          <div className="h-full w-full flex items-center justify-center">
+            <img 
+              src="/images/Frame 80.svg" 
+              alt="Frame 80" 
+              className="w-full h-full object-contain"
+            />
+          </div>
+        </div>
+      ) : (
+        // AI 상세페이지 생성 후: HTML 미리보기
+        <SmallPreview 
+          htmlContent={htmlContent}
+          showHtmlPreview={showHtmlPreview}
+          scrollTop={scrollTop}
+        />
+      )}
+
+      {/* BeforeStart 버튼 - 초기 상태에서만 표시 */}
+      {!showPreview && (
+        <div className="absolute right-[30px] bottom-[20px] w-[422px] h-[45px] xl:w-[450px] 2xl:w-[480px]">
+          <BeforeStart 
+            onClick={handleBeforeStartClick} 
+            isActive={formData.productName.trim() !== '' && 
+                     formData.category.trim() !== '' && 
+                     formData.options.trim() !== '' && 
+                     formData.sellingPoints.length > 0}
           />
         </div>
-      </div>
-
-      {/* BeforeStart 버튼 - Figma에서 가져온 디자인 (InputForm 영역에 맞게 조정) */}
-      <div className="absolute right-[30px] bottom-[20px] w-[422px] h-[45px] xl:w-[450px] 2xl:w-[480px]">
-        <BeforeStart 
-          onClick={handleBeforeStartClick} 
-          isActive={formData.productName.trim() !== '' && 
-                   formData.category.trim() !== '' && 
-                   formData.options.trim() !== '' && 
-                   formData.sellingPoints.length > 0}
-        />
-      </div>
+      )}
     </div>
   );
 }

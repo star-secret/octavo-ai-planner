@@ -46,8 +46,8 @@ export function PreviewArea({
   }, [showHtmlPreview, onScrollChange]);
 
   return (
-    <div className="absolute bg-white h-screen left-[391px] overflow-hidden shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] top-[78px] w-[860px]">
-      {/* HTML 미리보기 */}
+    <div className="h-full w-full">
+      {/* HTML 미리보기 또는 SVG 미리보기 */}
       {showHtmlPreview && htmlContent ? (
         <div className="h-full w-full">
           <iframe
@@ -60,10 +60,17 @@ export function PreviewArea({
         </div>
       ) : (
         <div className="h-full w-full flex items-center justify-center">
-          <div className="text-center text-gray-500">
-            <p className="text-lg mb-2">HTML 미리보기</p>
-            <p className="text-sm">concept.html을 로드하세요</p>
-          </div>
+          <img
+            src="/images/preview.svg"
+            alt="Preview"
+            className="max-w-full max-h-full object-contain"
+            style={{
+              width: 'auto',
+              height: 'auto',
+              maxWidth: '100%',
+              maxHeight: '100%'
+            }}
+          />
         </div>
       )}
     </div>
