@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 
 interface InputForm2Props {
   onStartPlanning: () => void;
@@ -8,9 +8,10 @@ interface InputForm2Props {
     options: string;
     sellingPoints: string[];
   }) => void;
+  onFormReset?: () => void;
 }
 
-export default function InputForm2({ onStartPlanning, onFormDataChange }: InputForm2Props) {
+export default function InputForm2({ onStartPlanning, onFormDataChange, onFormReset }: InputForm2Props) {
   const [productName, setProductName] = useState('');
   const [category, setCategory] = useState('');
   const [options, setOptions] = useState('');
@@ -18,6 +19,8 @@ export default function InputForm2({ onStartPlanning, onFormDataChange }: InputF
   const [newSellingPoint, setNewSellingPoint] = useState<string>('');
   const [productImages, setProductImages] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+
 
   const addSellingPoint = () => {
     if (sellingPoints.length < 10) {
@@ -74,6 +77,19 @@ export default function InputForm2({ onStartPlanning, onFormDataChange }: InputF
       });
     }
   }, [productName, category, options, sellingPoints]);
+
+  // 폼 초기화 함수
+  const resetForm = useCallback(() => {
+    setProductName('');
+    setCategory('');
+    setOptions('');
+    setSellingPoints([]);
+    setNewSellingPoint('');
+    setProductImages([]);
+    console.log('InputForm2 내부 상태가 초기화되었습니다!');
+  }, []);
+
+
 
   return (
     <div className="bg-white relative w-full h-full overflow-y-auto">

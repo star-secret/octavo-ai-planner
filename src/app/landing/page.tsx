@@ -89,6 +89,7 @@ export default function Page() {
   const [showHtmlPreview, setShowHtmlPreview] = useState(false);
   const [currentTemplate, setCurrentTemplate] = useState('concept1');
   const [scrollTop, setScrollTop] = useState(0);
+  const [formKey, setFormKey] = useState(0);
 
   // BeforeStart 버튼 클릭 핸들러 - 메인페이지로 이동
   const handleBeforeStartClick = () => {
@@ -111,6 +112,20 @@ export default function Page() {
     sellingPoints: string[];
   }) => {
     setFormData(data);
+  };
+
+  // 폼 초기화 핸들러
+  const handleFormReset = () => {
+    setFormData({
+      productName: '',
+      category: '',
+      options: '',
+      sellingPoints: []
+    });
+    console.log('폼이 초기화되었습니다!');
+    
+    // InputForm2의 상태도 초기화하기 위해 key를 변경
+    setFormKey(prev => prev + 1);
   };
 
   // AI 기획 시작 핸들러
@@ -222,7 +237,7 @@ export default function Page() {
   return (
     <div className="relative w-full h-screen bg-[#f5f5f5] overflow-hidden" style={{ height: '100vh' }}>
       {/* 사이드바 */}
-      <Sidebar />
+      <Sidebar onFormReset={handleFormReset} />
       
       {/* 헤더 */}
       <Header />
@@ -230,8 +245,10 @@ export default function Page() {
       {/* 입력 폼 - 오른쪽 끝에 배치 */}
       <div className="absolute bg-white h-screen right-0 overflow-clip top-[60px] w-[481px]">
         <InputForm2
+          key={formKey}
           onStartPlanning={handleBeforeStartClick}
           onFormDataChange={handleFormDataChange}
+          onFormReset={handleFormReset}
         />
       </div>
       

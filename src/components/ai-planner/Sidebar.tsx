@@ -7,7 +7,11 @@ const imgPhListBold = "/images/sidebar_vector1.svg";
 const imgVector = "/images/sidebar_vector2.svg";
 const imgFamiconsSettingsSharp = "/images/sidebar_vector3.svg";
 
-export function Sidebar() {
+interface SidebarProps {
+  onFormReset?: () => void;
+}
+
+export function Sidebar({ onFormReset }: SidebarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const router = useRouter();
@@ -17,9 +21,11 @@ export function Sidebar() {
   };
 
   const handleEditClick = () => {
-    // 편집 페이지로 이동 (반응만 구현)
-    console.log('편집 페이지로 이동합니다!');
-    // router.push('/edit'); // 실제 구현 시 사용
+    // 폼 초기화 및 편집 모드 전환
+    console.log('편집 모드로 전환하고 폼을 초기화합니다!');
+    if (onFormReset) {
+      onFormReset();
+    }
   };
 
   const handleSettingsClick = () => {
