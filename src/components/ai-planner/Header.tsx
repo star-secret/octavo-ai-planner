@@ -8,7 +8,7 @@ const imgBxBell = "/images/Frame 3.svg";
 
 export function Header() {
   return (
-    <div className="absolute bg-white box-border content-stretch flex flex-row items-center justify-between px-[30px] py-5 left-[72px] right-0 top-0">
+    <div className="absolute bg-white box-border content-stretch flex flex-row items-center justify-between px-[30px] py-3 left-[72px] right-0 top-0">
       <div className="h-[39px] relative shrink-0 w-[147px]">
         <div className="absolute h-[33px] left-px top-[3px] w-[120px]">
           <Image
@@ -20,12 +20,12 @@ export function Header() {
           />
         </div>
       </div>
-      <div className="relative shrink-0 h-6 w-20">
+      <div className="relative shrink-0 h-6 w-24">
         <Image
           alt="Frame 55"
           className="block max-w-none size-full"
           src="/images/Frame 55.svg"
-          width={80}
+          width={96}
           height={24}
         />
       </div>

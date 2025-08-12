@@ -9,22 +9,35 @@ import { htmlTemplates } from '@/data/htmlTemplates';
 const imgGrommetIconsLinkNext = "http://localhost:3845/assets/69f2bb5b63187d5c6d01d196f05acbc2c41ab156.svg";
 
 // Figma에서 가져온 BeforeStart 컴포넌트
-function BeforeStart({ onClick }: { onClick: () => void }) {
+function BeforeStart({ onClick, isActive }: { onClick: () => void; isActive: boolean }) {
   return (
     <div
-      className="relative rounded-[5px] size-full cursor-pointer hover:bg-[#e8ecf2] transition-colors"
+      className={`relative rounded-[5px] size-full transition-all duration-200 ${
+        isActive 
+          ? 'bg-[#22202a] cursor-pointer' 
+          : 'bg-white cursor-not-allowed opacity-60'
+      }`}
       data-name="before_start"
       id="node-8_1025"
-      onClick={onClick}
+      onClick={(e) => {
+        if (isActive) {
+          console.log('BeforeStart 클릭됨!');
+          onClick();
+        } else {
+          console.log('필수 조건이 충족되지 않아 버튼이 비활성화되어 있습니다.');
+        }
+      }}
     >
       <div className="overflow-clip relative size-full">
         <div
-          className="absolute box-border content-stretch flex flex-row gap-[7px] items-center justify-start p-0 top-1/2 translate-x-[-50%] translate-y-[-50%]"
+          className="absolute box-border content-stretch flex flex-row gap-[7px] items-center justify-start p-0 top-1/2 translate-x-[-50%] translate-y-[-50%] z-10"
           id="node-8_1020"
           style={{ left: "calc(50% + 0.5px)" }}
         >
           <div
-            className="flex flex-col font-['Pretendard:SemiBold',_sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#c3c8ce] text-[16px] text-left text-nowrap"
+            className={`flex flex-col font-['Pretendard:SemiBold',_sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[16px] text-left text-nowrap ${
+              isActive ? 'text-[#ffffff]' : 'text-[#c3c8ce]'
+            }`}
             id="node-8_1021"
           >
             <p className="block leading-[normal] whitespace-pre">
@@ -46,8 +59,16 @@ function BeforeStart({ onClick }: { onClick: () => void }) {
       </div>
       <div
         aria-hidden="true"
-        className="absolute border border-[#c3c8ce] border-solid inset-0 pointer-events-none rounded-[5px]"
-      />
+        className={`absolute inset-0 pointer-events-none rounded-[5px] ${
+          isActive 
+            ? 'bg-gradient-to-b from-[#6A00B4] via-[#C05023] to-[#E35B00] p-[1.5px]' 
+            : 'border border-[#c3c8ce]'
+        }`}
+      >
+        {isActive && (
+          <div className="h-full w-full bg-[#22202a] rounded-[3.5px]"></div>
+        )}
+      </div>
     </div>
   );
 }
@@ -59,8 +80,8 @@ export default function Page() {
   const [formData, setFormData] = useState({
     productName: '',
     category: '',
-    advantages: [''],
-    referenceUrl: ''
+    options: '',
+    sellingPoints: [] as string[]
   });
 
   // HTML 미리보기 상태
@@ -72,6 +93,7 @@ export default function Page() {
   // BeforeStart 버튼 클릭 핸들러 - 메인페이지로 이동
   const handleBeforeStartClick = () => {
     console.log('AI 상세페이지 만들기 버튼이 클릭되었습니다!');
+    console.log('현재 formData:', formData);
     // 메인페이지로 이동
     router.push('/');
   };
@@ -81,38 +103,14 @@ export default function Page() {
     loadConceptHtml();
   }, []);
 
-  // 입력 필드 변경 핸들러
-  const handleInputChange = (field: string, value: string | string[]) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: value
-    }));
-  };
-
-  // 장점 추가 핸들러
-  const addAdvantage = () => {
-    setFormData(prev => ({
-      ...prev,
-      advantages: [...prev.advantages, '']
-    }));
-  };
-
-  // 장점 업데이트 핸들러
-  const updateAdvantage = (index: number, value: string) => {
-    setFormData(prev => ({
-      ...prev,
-      advantages: prev.advantages.map((adv, i) => i === index ? value : adv)
-    }));
-  };
-
-  // 장점 삭제 핸들러
-  const removeAdvantage = (index: number) => {
-    if (formData.advantages.length > 1) {
-      setFormData(prev => ({
-        ...prev,
-        advantages: prev.advantages.filter((_, i) => i !== index)
-      }));
-    }
+  // InputForm2에서 폼 데이터 변경 시 호출되는 핸들러
+  const handleFormDataChange = (data: {
+    productName: string;
+    category: string;
+    options: string;
+    sellingPoints: string[];
+  }) => {
+    setFormData(data);
   };
 
   // AI 기획 시작 핸들러
@@ -230,9 +228,10 @@ export default function Page() {
       <Header />
       
       {/* 입력 폼 - 오른쪽 끝에 배치 */}
-      <div className="absolute bg-white h-screen right-0 overflow-clip top-[78px] w-[481px]">
+      <div className="absolute bg-white h-screen right-0 overflow-clip top-[60px] w-[481px]">
         <InputForm2
-          onStartPlanning={handleStartPlanning}
+          onStartPlanning={handleBeforeStartClick}
+          onFormDataChange={handleFormDataChange}
         />
       </div>
       
@@ -259,10 +258,14 @@ export default function Page() {
       </div>
 
       {/* BeforeStart 버튼 - Figma에서 가져온 디자인 (InputForm 영역에 맞게 조정) */}
-      <div className="absolute right-[30px] bottom-[30px] w-[422px] h-[59px]">
-        <div className="bg-[#f5f7fb] relative rounded-[5px] size-full">
-          <BeforeStart onClick={handleBeforeStartClick} />
-        </div>
+      <div className="absolute right-[30px] bottom-[20px] w-[422px] h-[45px]">
+        <BeforeStart 
+          onClick={handleBeforeStartClick} 
+          isActive={formData.productName.trim() !== '' && 
+                   formData.category.trim() !== '' && 
+                   formData.options.trim() !== '' && 
+                   formData.sellingPoints.length > 0}
+        />
       </div>
     </div>
   );
