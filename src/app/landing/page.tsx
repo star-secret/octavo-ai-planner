@@ -242,29 +242,32 @@ export default function Page() {
       {/* 헤더 */}
       <Header />
       
-      {/* 입력 폼 - 오른쪽 끝에 배치 */}
-      <div className="absolute bg-white h-screen right-0 overflow-clip top-[60px] w-[481px]">
-        <InputForm2
-          key={formKey}
-          onStartPlanning={handleBeforeStartClick}
-          onFormDataChange={handleFormDataChange}
-          onFormReset={handleFormReset}
-        />
-      </div>
-      
-      {/* 미리보기 영역 - Frame 80.svg 이미지 */}
-      <div className="absolute h-screen left-[391px] overflow-hidden top-[78px] w-[860px]">
-        <div className="h-full w-full flex items-center justify-center">
-          <img 
-            src="/images/Frame 80.svg" 
-            alt="Frame 80" 
-            className="w-3/4 h-3/4 object-contain"
+      {/* 메인 컨텐츠 영역 - Grid 레이아웃 사용 */}
+      <div className="absolute top-[60px] left-[391px] right-0 bottom-0 grid grid-cols-[1fr_481px] gap-0 xl:grid-cols-[1fr_520px] 2xl:grid-cols-[1fr_560px]">
+        {/* 미리보기 영역 */}
+        <div className="relative overflow-hidden">
+          <div className="h-full w-full flex items-center justify-center p-4">
+            <img 
+              src="/images/Frame 80.svg" 
+              alt="Frame 80" 
+              className="w-full h-full object-contain max-w-[800px] max-h-[600px]"
+            />
+          </div>
+        </div>
+        
+        {/* 입력 폼 */}
+        <div className="bg-white overflow-clip h-full">
+          <InputForm2
+            key={formKey}
+            onStartPlanning={handleBeforeStartClick}
+            onFormDataChange={handleFormDataChange}
+            onFormReset={handleFormReset}
           />
         </div>
       </div>
       
       {/* 작은 미리보기 영역 - Frame 80.svg 이미지 */}
-      <div className="absolute bg-white h-[240.63px] left-[72px] overflow-hidden top-[78px] w-[187px]">
+      <div className="absolute h-[240.63px] left-[90px] overflow-hidden top-[78px] w-[187px] xl:w-[220px] 2xl:w-[250px] xl:left-[100px] 2xl:left-[110px] xl:h-[260px] 2xl:h-[280px]">
         <div className="h-full w-full flex items-center justify-center">
           <img 
             src="/images/Frame 80.svg" 
@@ -275,7 +278,7 @@ export default function Page() {
       </div>
 
       {/* BeforeStart 버튼 - Figma에서 가져온 디자인 (InputForm 영역에 맞게 조정) */}
-      <div className="absolute right-[30px] bottom-[20px] w-[422px] h-[45px]">
+      <div className="absolute right-[30px] bottom-[20px] w-[422px] h-[45px] xl:w-[450px] 2xl:w-[480px]">
         <BeforeStart 
           onClick={handleBeforeStartClick} 
           isActive={formData.productName.trim() !== '' && 

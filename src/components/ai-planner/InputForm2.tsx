@@ -93,7 +93,7 @@ export default function InputForm2({ onStartPlanning, onFormDataChange, onFormRe
 
   return (
     <div className="bg-white relative w-full h-full overflow-y-auto">
-      <div className="absolute top-[10px] left-1/2 transform -translate-x-1/2 w-[422px] flex flex-col gap-3 pb-32">
+      <div className="absolute top-[10px] left-1/2 transform -translate-x-1/2 w-[422px] xl:w-[450px] 2xl:w-[480px] flex flex-col gap-3 pb-32">
         {/* 상품명 */}
         <div className="w-full flex flex-col gap-0.5">
           <div className="flex flex-row gap-[5px] items-center">
